@@ -29,6 +29,18 @@
     {
       "type": "object",
       "required": [
+        "get_cw20_decimals"
+      ],
+      "properties": {
+        "get_cw20_decimals": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
         "get_withdrawable"
       ],
       "properties": {
