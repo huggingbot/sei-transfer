@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QueryMsg",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "get_owner"
+      ],
+      "properties": {
+        "get_owner": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "get_cw20_contract"
+      ],
+      "properties": {
+        "get_cw20_contract": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "get_withdrawable"
+      ],
+      "properties": {
+        "get_withdrawable": {
+          "type": "object",
+          "required": [
+            "addr"
+          ],
+          "properties": {
+            "addr": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "get_fee_basis_point"
+      ],
+      "properties": {
+        "get_fee_basis_point": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

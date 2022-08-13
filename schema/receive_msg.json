@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ReceiveMsg",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "set_receivers"
+      ],
+      "properties": {
+        "set_receivers": {
+          "type": "object",
+          "required": [
+            "addr1",
+            "addr2"
+          ],
+          "properties": {
+            "addr1": {
+              "type": "string"
+            },
+            "addr2": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}
