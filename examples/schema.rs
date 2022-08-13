@@ -4,8 +4,8 @@ use std::fs::create_dir_all;
 use cosmwasm_schema::{export_schema, remove_schemas, schema_for};
 
 use sei_transfer::msg::{
-    Cw20ContractResponse, ExecuteMsg, GetFeeBasisPointResponse, InstantiateMsg, OwnerResponse,
-    QueryMsg, ReceiveMsg, WithdrawableResponse,
+    Cw20ContractResponse, Cw20DecimalsResponse, ExecuteMsg, GetFeeBasisPointResponse,
+    InstantiateMsg, OwnerResponse, QueryMsg, ReceiveMsg, WithdrawableResponse,
 };
 use sei_transfer::state::Config;
 
@@ -21,6 +21,7 @@ fn main() {
     export_schema(&schema_for!(ReceiveMsg), &out_dir);
     export_schema(&schema_for!(OwnerResponse), &out_dir);
     export_schema(&schema_for!(Cw20ContractResponse), &out_dir);
+    export_schema(&schema_for!(Cw20DecimalsResponse), &out_dir);
     export_schema(&schema_for!(WithdrawableResponse), &out_dir);
     export_schema(&schema_for!(GetFeeBasisPointResponse), &out_dir);
     export_schema(&schema_for!(Config), &out_dir);

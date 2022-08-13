@@ -9,8 +9,8 @@ use cw20::{Cw20Contract, Cw20ExecuteMsg, Cw20ReceiveMsg};
 
 use crate::error::ContractError;
 use crate::msg::{
-    Cw20ContractResponse, ExecuteMsg, GetFeeBasisPointResponse, InstantiateMsg, OwnerResponse,
-    QueryMsg, ReceiveMsg, WithdrawableResponse,
+    Cw20ContractResponse, Cw20DecimalsResponse, ExecuteMsg, GetFeeBasisPointResponse,
+    InstantiateMsg, OwnerResponse, QueryMsg, ReceiveMsg, WithdrawableResponse,
 };
 
 const CONTRACT_NAME: &str = "crates.io:sei-transfer";
@@ -171,6 +171,7 @@ pub fn query(_deps: Deps, _env: Env, _msg: QueryMsg) -> StdResult<Binary> {
     match _msg {
         QueryMsg::GetOwner {} => to_binary(&query_owner(_deps)?),
         QueryMsg::GetCw20Contract {} => to_binary(&query_cw20_contract(_deps)?),
+        QueryMsg::GetCw20Decimals {} => to_binary(&query_cw20_decimals(_deps)?),
         QueryMsg::GetWithdrawable { addr } => to_binary(&query_withdrawable(_deps, addr)?),
         QueryMsg::GetFeeBasisPoint {} => to_binary(&query_fee_basis_point(_deps)?),
     }
@@ -187,6 +188,13 @@ fn query_cw20_contract(_deps: Deps) -> StdResult<Cw20ContractResponse> {
     let config = CONFIG.load(_deps.storage)?;
     Ok(Cw20ContractResponse {
         contract: config.cw20_addr.into_string(),
+    })
+}
+
+fn query_cw20_decimals(_deps: Deps) -> StdResult<Cw20DecimalsResponse> {
+    let config = CONFIG.load(_deps.storage)?;
+    Ok(Cw20DecimalsResponse {
+        decimals: config.cw20_decimals,
     })
 }
 
@@ -340,8 +348,20 @@ mod tests {
         let res = query(deps.as_ref(), mock_env(), msg).unwrap();
         let cw20_contract_res: Cw20ContractResponse = from_binary(&res).unwrap();
 
+        let msg = QueryMsg::GetCw20Decimals {};
+        let res = query(deps.as_ref(), mock_env(), msg).unwrap();
+        let cw20_decimals_res: Cw20DecimalsResponse = from_binary(&res).unwrap();
+        let msg = QueryMsg::GetFeeBasisPoint {};
+        let res = query(deps.as_ref(), mock_env(), msg).unwrap();
+        let fee_basis_point_res: GetFeeBasisPointResponse = from_binary(&res).unwrap();
+
         assert_eq!(owner_res.owner, OWNER);
         assert_eq!(cw20_contract_res.contract, MOCK_CONTRACT_ADDR);
+        assert_eq!(cw20_decimals_res.decimals, CW20_DECIMALS);
+        assert_eq!(
+            fee_basis_point_res.fee_basis_point,
+            Uint64::new(FEE_BASIS_POINT)
+        );
     }
 
     #[test]

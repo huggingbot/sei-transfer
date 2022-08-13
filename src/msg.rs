@@ -31,6 +31,7 @@ pub enum ReceiveMsg {
 pub enum QueryMsg {
     GetOwner {},
     GetCw20Contract {},
+    GetCw20Decimals {},
     GetWithdrawable { addr: String },
     GetFeeBasisPoint {},
 }
@@ -45,6 +46,12 @@ pub struct OwnerResponse {
 #[serde(rename_all = "snake_case")]
 pub struct Cw20ContractResponse {
     pub contract: String,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub struct Cw20DecimalsResponse {
+    pub decimals: u32,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
