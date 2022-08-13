@@ -7,6 +7,8 @@ This is a Sei smart contract built using CosmWasm for the Cosmos ecosystem. This
 - Instantiate the contract and set the owner, fee basis point, CW20 contract address and decimals
 - Read query to get the owner of the contract
 - Read query to get the withdrawable tokens for an address
+- Read query to get the CW20 contract address
+- Read query to get the CW20 decimals
 - Read query to get the fee basis point
 - Execute message to send tokens and specifying 2 recipients
 - Execute message to withdraw tokens
