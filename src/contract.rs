@@ -141,7 +141,7 @@ fn execute_withdraw(
     })?;
 
     Ok(Response::new()
-        .add_attribute(format!("{}", sender.clone()), leftover)
+        .add_attribute(format!("{}", sender), leftover)
         .add_message(msg))
 }
 
