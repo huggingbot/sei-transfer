@@ -1,6 +1,6 @@
 # Sei Transfer
 
-This is a Sei smart contract built using CosmWasm for the Cosmos ecosystem. This contract allows a 1-to-2 transfer for a CW20 token.
+This is a smart contract built using CosmWasm for the Cosmos ecosystem. This contract allows a 1-to-2 transfer for a CW20 token.
 
 ## Features
 
